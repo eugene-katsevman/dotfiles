@@ -45,10 +45,10 @@ let mapleader="-"
 
 nnoremap <F9> :make <CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
 
 nnoremap H 0
 noremap L $
 nnoremap <C-L> :nohl<cr><C-L>
 nnoremap <ALT-w> <C-w>w
 inoremap <ALT-w> <Esc><C-w>w
+let g:airline_section_a='%#__accent_bold#%{airline#util#wrap(airline#parts#mode(),0)}%#__restore__#%{airline#util#append(airline#parts#crypt(),0)}%{airline#util#append(airline#parts#paste(),0)}%{airline#util#append(airline#parts#spell(),0)}%{airline#util#append("",0)}%{airline#util#append("",0)}%{airline#util#append(airline#parts#iminsert(),0)}'
