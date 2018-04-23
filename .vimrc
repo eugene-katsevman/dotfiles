@@ -1,9 +1,19 @@
-" pathogen
+" Vundle package manager
 filetype off
-execute pathogen#infect()
+set nocompatible
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'vim-airline/vim-airline'
+
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'lyokha/vim-xkbswitch'
+call vundle#end()
+
 filetype indent plugin on
 
-set nocompatible
 set modelines=0
 
 " visuals
@@ -39,6 +49,7 @@ set ruler
 
 " russian language
 set keymap=russian-jcukenwin
+let g:XkbSwitchEnabled = 1
 set iminsert=0
 set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
