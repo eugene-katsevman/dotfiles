@@ -7,9 +7,13 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-airline/vim-airline'
-
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'lyokha/vim-xkbswitch'
+Plugin 'kbenzie/vim-fresh'
+Plugin 'neovimhaskell/haskell-vim'
+Plugin 'mhinz/vim-startify'
+
 call vundle#end()
 
 filetype indent plugin on
