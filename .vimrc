@@ -33,6 +33,8 @@ colorscheme solarized
   " switch off airline keymap
 let g:airline_section_a='%#__accent_bold#%{airline#util#wrap(airline#parts#mode(),0)}%#__restore__#%{airline#util#append(airline#parts#crypt(),0)}%{airline#util#append(airline#parts#paste(),0)}%{airline#util#append(airline#parts#spell(),0)}%{airline#util#append("",0)}%{airline#util#append("",0)}%{airline#util#append(airline#parts#iminsert(),0)}'
 
+" right margin
+set colorcolumn=80
 " editing 
 set tabstop=4
 set shiftwidth=4
@@ -68,18 +70,32 @@ let mapleader="-"
 
 nnoremap <F9> :make <CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv <silent> :source $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 nnoremap <C-up> dd<up>P
 nnoremap <C-down> ddp
 inoremap <C-up> <Esc>dd<up>Pi
 inoremap <C-down> <Esc>ddpi
 nnoremap H 0
-noremap L $
+nnoremap L $
 nnoremap <C-L> :nohl<cr><C-L>
-
+nnoremap <localleader>j :make<cr>
 
 " python snippets
 iabbrev FOR for i in <lt>something>:<cr><tab>pass<up>
 iabbrev IF if <lt>something>:<cr><tab>something<cr><backspace>else:<cr><tab>somethingelse
 
+
+" align helpers
+function! SaveColumn()
+    let b:AlignToColumn = virtcol('.')
+endfunction
+
+nnoremap <localleader>a :call SaveColumn()<cr>
+
+function! AppendMissingSpaces()
+    let b:missing = b:AlignToColumn - virtcol('.')
+    exec "normal! dw".b:missing."i " 
+endfunction
+
+nnoremap <localleader>s :call AppendMissingSpaces()<cr>
