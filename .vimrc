@@ -13,7 +13,9 @@ Plugin 'lyokha/vim-xkbswitch'
 Plugin 'kbenzie/vim-fresh'
 Plugin 'neovimhaskell/haskell-vim'
 Plugin 'mhinz/vim-startify'
-
+Plugin 'nvie/vim-flake8'
+Plugin 'python-mode/python-mode'
+Plugin 'eugene-katsevman/vim-keeper'
 call vundle#end()
 
 filetype indent plugin on
@@ -85,6 +87,10 @@ nnoremap <localleader>j :make<cr>
 iabbrev FOR for i in <lt>something>:<cr><tab>pass<up>
 iabbrev IF if <lt>something>:<cr><tab>something<cr><backspace>else:<cr><tab>somethingelse
 
+" pymode
+
+let g:pymode = 1
+let g:pymode_python = 'python3'
 
 " align helpers
 function! SaveColumn()
@@ -99,3 +105,8 @@ function! AppendMissingSpaces()
 endfunction
 
 nnoremap <localleader>s :call AppendMissingSpaces()<cr>
+
+
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
