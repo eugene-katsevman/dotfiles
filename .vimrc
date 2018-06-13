@@ -16,6 +16,7 @@ Plugin 'mhinz/vim-startify'
 Plugin 'nvie/vim-flake8'
 Plugin 'python-mode/python-mode'
 Plugin 'eugene-katsevman/vim-keeper'
+Plugin 'mtth/scratch.vim'
 call vundle#end()
 
 filetype indent plugin on
@@ -54,6 +55,13 @@ set hidden         " allow switch buffers without saving them
 " other
 set wildmenu
 set ruler
+" fuzzy search
+set path+=**
+
+" netrw
+let g:netrw_banner=0        " do not show help
+let g:netrw_liststyle=3     " tree
+let g:netrw_browse_split=4  " open in a separate window
 
 " russian language
 set keymap=russian-jcukenwin
@@ -73,7 +81,7 @@ let mapleader="-"
 nnoremap <F9> :make <CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-
+inoremap <C-d> <Delete>
 nnoremap <C-up> dd<up>P
 nnoremap <C-down> ddp
 inoremap <C-up> <Esc>dd<up>Pi
@@ -82,6 +90,11 @@ nnoremap H 0
 nnoremap L $
 nnoremap <C-L> :nohl<cr><C-L>
 nnoremap <localleader>j :make<cr>
+
+nnoremap <localleader>l :ls<cr>
+nnoremap <localleader>0 :bf<cr>
+nnoremap <localleader>n :bn<cr>
+nnoremap <localleader>p :bp<cr>
 
 " python snippets
 iabbrev FOR for i in <lt>something>:<cr><tab>pass<up>
