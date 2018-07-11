@@ -17,6 +17,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'python-mode/python-mode'
 Plugin 'eugene-katsevman/vim-keeper'
 Plugin 'mtth/scratch.vim'
+Plugin 'leafgarland/typescript-vim'
 call vundle#end()
 
 filetype indent plugin on
@@ -57,11 +58,12 @@ set wildmenu
 set ruler
 " fuzzy search
 set path+=**
+set wildignore+=.git,*.pyc
 
 " netrw
 let g:netrw_banner=0        " do not show help
 let g:netrw_liststyle=3     " tree
-let g:netrw_browse_split=4  " open in a separate window
+" let g:netrw_browse_split=4  " open in a separate window
 
 " russian language
 set keymap=russian-jcukenwin
@@ -106,18 +108,18 @@ let g:pymode = 1
 let g:pymode_python = 'python3'
 
 " align helpers
-function! SaveColumn()
-    let b:AlignToColumn = virtcol('.')
-endfunction
+" function! SaveColumn()
+"     let b:AlignToColumn = virtcol('.')
+" endfunction
 
-nnoremap <localleader>a :call SaveColumn()<cr>
+" nnoremap <localleader>a :call SaveColumn()<cr>
 
-function! AppendMissingSpaces()
-    let b:missing = b:AlignToColumn - virtcol('.')
-    exec "normal! dw".b:missing."i " 
-endfunction
+" function! AppendMissingSpaces()
+"     let b:missing = b:AlignToColumn - virtcol('.')
+"     exec "normal! dw".b:missing."i " 
+" endfunction
 
-nnoremap <localleader>s :call AppendMissingSpaces()<cr>
+" nnoremap <localleader>s :call AppendMissingSpaces()<cr>
 
 " debug syntax highlight 
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
