@@ -1,6 +1,5 @@
 " Vundle package manager
 filetype off
-set nocompatible
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -16,8 +15,14 @@ Plugin 'mhinz/vim-startify'
 Plugin 'nvie/vim-flake8'
 Plugin 'python-mode/python-mode'
 Plugin 'eugene-katsevman/vim-keeper'
-Plugin 'mtth/scratch.vim'
+" Plugin 'mtth/scratch.vim'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
+" Optional
+Plugin 'honza/vim-snippets'
 call vundle#end()
 
 filetype indent plugin on
@@ -62,8 +67,21 @@ set wildignore+=.git,*.pyc
 
 " netrw
 let g:netrw_banner=0        " do not show help
-let g:netrw_liststyle=3     " tree
-" let g:netrw_browse_split=4  " open in a separate window
+
+" 0 thin line
+" 1 long with filesize
+" 2 wide
+" 3 tree
+let g:netrw_liststyle=0
+
+" 0 this window
+" 1 new horizontal split
+" 2 new vertical split
+" 3 new tab
+" 4 previous window
+let g:netrw_browse_split=4
+
+let g:netrw_winsize=25
 
 " russian language
 set keymap=russian-jcukenwin
@@ -122,6 +140,25 @@ let g:pymode_python = 'python3'
 " nnoremap <localleader>s :call AppendMissingSpaces()<cr>
 
 " debug syntax highlight 
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+" \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+" \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+
+function! SwitchToAlternate()
+     let l:Filename = expand('%:t:r')
+     let l:Extension = expand('%:t:e')
+     let l:AlternateExtension = l:Extension == "hpp" ? "cpp" : "hpp"
+     let l:Alternate = l:Filename.".".l:AlternateExtension
+     echom "switching to ".l:Alternate
+     exec "find ".l:Alternate
+     
+endfunction
+
+nnoremap <localleader>a :call SwitchToAlternate()<cr>
+
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories='~/.vim/UltiSnips' 
+let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
